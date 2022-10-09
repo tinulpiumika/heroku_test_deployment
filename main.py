@@ -39,7 +39,7 @@ app.add_middleware(
 #diabetes_model = pickle.load(open('diabetes_model.sav','rb'))
 
 
-@app.post('/diabetes_prediction')
+@app.get('/diabetes_prediction')
 def diabetes_pred():
     return "Hello World"
 
