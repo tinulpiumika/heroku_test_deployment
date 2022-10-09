@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Jun 12 11:36:48 2022
-
-@author: siddhardhan
-"""
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,23 +19,42 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# class model_input(BaseModel):
-#     Pregnancies : int
-#     Glucose : int
-#     BloodPressure : int
-#     SkinThickness : int
-#     Insulin : int
-#     BMI : float
-#     DiabetesPedigreeFunction :  float
-#     Age : int
+class model_input(BaseModel):
     
+    age : int
+    sex : int
+    bloodpressure : float
+    cholesterol : int
+    diabetes : int
+    smoking : int    
 
 # loading the saved model
-#diabetes_model = pickle.load(open('diabetes_model.sav','rb'))
+model = pickle.load(open('heartdisease_model.pkl','rb'))
 
 
-@app.get('/diabetes_prediction')
-def diabetes_pred():
-    return "Hello World"
+@app.post('/cardiac_prediction')
+def diabetes_pred(input_parameters : model_input):
+    
+    input_data = input_parameters.json()
+    input_dictionary = json.loads(input_data)
+    
+    age = input_dictionary['age']
+    sex = input_dictionary['sex']
+    bp = input_dictionary['bloodpressure']
+    ch = input_dictionary['cholesterol']
+    db = input_dictionary['diabetes']
+    smk = input_dictionary['smoking']
+
+
+
+    input_list = [age, sex, bp, ch, db, smk]
+    
+    prediction = model.predict([input_list])
+    
+    if prediction[0] == 0:
+        return 'The person can not  '
+    
+    else:
+        return 'The person can '
 
 
