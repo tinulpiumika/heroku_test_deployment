@@ -52,9 +52,9 @@ def diabetes_pred(input_parameters : model_input):
     prediction = model.predict([input_list])
     
     if prediction[0] == 0:
-        return 'There is <b> no risk </b> of cardiovascular disease in the next ten years.'
+        return 'There is no risk of cardiovascular disease in the next ten years.'
     
     else:
-        return 'There is <b> high risk </b> of cardiovascular disease in the next ten years.'
+        return 'There is high risk of cardiovascular disease in the next ten years.'
 
 
