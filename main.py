@@ -51,7 +51,10 @@ def diabetes_pred(input_parameters : model_input):
     
     prediction = model.predict([input_list])
     
-    return prediction[0]
-
+    if prediction[0] == 0:
+        return 0
+    
+    else:
+        return 1
 
 
