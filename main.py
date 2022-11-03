@@ -24,12 +24,13 @@ class model_input(BaseModel):
     age : int
     sex : int
     bloodpressure : float
-    cholesterol : int
+    cholesterol : float
     diabetes : int
     smoking : int    
 
 # loading the saved model
-model = pickle.load(open('heartdisease_model.pkl','rb'))
+#model = pickle.load(open('heartdisease_model.pkl','rb'))
+model = pickle.load(open('rfc_model.pkl','rb'))
 
 
 @app.post('/cardiac_prediction')
