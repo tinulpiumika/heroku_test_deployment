@@ -33,6 +33,12 @@ class model_input(BaseModel):
 model = pickle.load(open('rfc_model.pkl','rb'))
 
 
+@app.get('/')
+def diabetes_pred(input_parameters : model_input):
+    return 'hello world'
+
+
+
 @app.post('/cardiac_prediction')
 def diabetes_pred(input_parameters : model_input):
     
